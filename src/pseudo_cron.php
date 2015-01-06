@@ -2,6 +2,10 @@
 /**
  * Sets up a "pseduo-cron" system to run functions or actions when a request is made to the endpoint. Works well with an external cron service.
  *
+ *
+ * @version 0.1.0
+ *
+ *
  * @package   holotree\pseudo_cron
  * @author    Josh Pollock <Josh@JoshPress.net>
  * @license   GPL-2.0+

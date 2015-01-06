@@ -1,6 +1,6 @@
 {
   "name": "holotree/ht-pseudo-cron",
-  "description": "Simple pseudo-cron system, to run actions or functions using an external cron system.",
+  "description": "Simple WordPress pseudo-cron system, to run actions or functions using an external cron system.",
   "type": "library",
   "keywords": [
     "wordpress", "cron"

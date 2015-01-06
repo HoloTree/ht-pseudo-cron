@@ -35,6 +35,8 @@ class pseudo_cron {
 	 */
 	protected  $transient_length = DAY_IN_SECONDS;
 
+	protected $lockout_transient_name = 'ht_pseudo_cron_lockout';
+
 	/**
 	 * Constructor for class
 	 */
@@ -85,9 +87,10 @@ class pseudo_cron {
 
 		$key = $wp_query->get( $this->the_key_name() );
 
-		if ( $key && $this->params->secret_key === $key ) {
+		if ( $key && ! $this->is_locked_out() && $this->params->secret_key === $key ) {
 			$act = new act( $this->params );
 			$act->run();
+			set_transient( $this->lockout_transient_name, true );
 
 		}
 
@@ -103,6 +106,19 @@ class pseudo_cron {
 	 */
 	private function the_key_name() {
 		return $this->params->secret_key_name;
+
+	}
+
+
+	/**
+	 * Check if the lockout transient is set
+	 *
+	 * @access protected
+	 *
+	 * @return bool
+	 */
+	protected function is_locked_out() {
+		return get_transient( $this->lockout_transient_name );
 
 	}
 

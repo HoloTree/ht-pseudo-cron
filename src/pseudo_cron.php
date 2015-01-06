@@ -90,7 +90,7 @@ class pseudo_cron {
 		if ( $key && ! $this->is_locked_out() && $this->params->secret_key === $key ) {
 			$act = new act( $this->params );
 			$act->run();
-			set_transient( $this->lockout_transient_name, true );
+			set_transient( $this->lockout_transient_name, true, $this->params->lockout_time );
 
 		}
 
